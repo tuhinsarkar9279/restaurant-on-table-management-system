@@ -4,7 +4,7 @@ import { cilSearch } from "@coreui/icons";
 
 function Bar({ setSearchTerm }) {
   return (
-    <div className="bg-gray-950 mx-12 my-3 flex items-center">
+    <div className="bg-gray-950 mx-12 my-3 barr flex items-center">
       <div className="relative w-100">
         <input
           type="text"

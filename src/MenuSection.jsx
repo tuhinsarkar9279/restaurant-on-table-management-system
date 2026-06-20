@@ -38,7 +38,7 @@ function MenuSection({ activeCategory, searchTerm }) {
   });
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mx-12 gap-6 mt-6 mb-3">
+    <div className="grid grid-cols-1 barr md:grid-cols-2 lg:grid-cols-4 mx-12 gap-6 mt-6 mb-3">
       {filteredFoods.map((food, index) => (
         <FoodCard
           key={index}

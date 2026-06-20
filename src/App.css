@@ -3,3 +3,27 @@
 body{
     background-color: black;
 }
+
+
+@media (max-width: 830px) {
+
+    .cata{
+        flex-wrap: wrap;
+    }
+    .btnn{
+        width: 130px;
+        padding-left: 5px !important;
+    }
+    .barr{
+        margin: 0 20px;
+        margin-top: 10px;
+    }
+
+    .navv{
+        padding: 12px 8px !important;
+    }
+
+
+
+
+}

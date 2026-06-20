@@ -2,7 +2,7 @@ const CustomButton = ({ text, icon, active, onClick }) => {
   return (
     <button
       onClick={onClick}
-      className={`px-5 py-2 rounded-3xl transition flex items-center gap-2
+      className={`px-5 py-2 rounded-3xl btnn transition flex items-center gap-2
         ${
           active
             ? "bg-amber-400 text-black"

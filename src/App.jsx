@@ -5,6 +5,7 @@ import heroImg from './assets/hero.png'
 import './App.css'
 import Hero from './hero'
 import { CButton } from '@coreui/react'
+import Loader from "./Loader";
 
 
 import Home from './home'
@@ -13,6 +14,7 @@ import Navbar from './navbar'
 
 function App() {
   const [count, setCount] = useState(0)
+  
 
   return (
     <>

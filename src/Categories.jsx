@@ -11,7 +11,7 @@ function Categories({ active, setActive }) {
   ];
 
   return (
-    <div className="flex mx-12 gap-3">
+    <div className="flex cata justify-center barr mx-12 gap-3">
       {categories.map((item) => (
         <CustomButton
           key={item.name}
