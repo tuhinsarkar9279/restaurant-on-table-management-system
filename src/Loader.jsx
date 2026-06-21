@@ -3,19 +3,19 @@ import logo from "./assets/logo.png";
 function Loader() {
   return (
     <div className="fixed inset-0 bg-black flex items-center justify-center z-50">
-      <div className="flex flex-col items-center">
+      <div className="text-center">
         <img
           src={logo}
-          alt="Tavola"
-          className="w-28 h-28 animate-spin"
+          alt="Tavola Logo"
+          className="w-40 h-40 animate-pulse drop-shadow-[0_0_25px_#facc15]"
         />
 
-        <h2 className="text-amber-400 text-2xl font-bold mt-4">
+        <h1 className="text-amber-400 text-4xl font-bold mt-4">
           Tavola
-        </h2>
+        </h1>
 
         <p className="text-gray-400 mt-2">
-          Preparing your table...
+          Fine Dining, Your Table
         </p>
       </div>
     </div>

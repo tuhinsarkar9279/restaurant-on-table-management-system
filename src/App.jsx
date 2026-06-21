@@ -1,30 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
-import Hero from './hero'
-import { CButton } from '@coreui/react'
-import Loader from "./Loader";
+import { useState, useEffect } from 'react';
+import './App.css';
 
-
-import Home from './home'
-
-import Navbar from './navbar'
+import Navbar from './navbar';
+import Hero from './hero';
+import Home from './home';
+import Loader from './Loader';
 
 function App() {
-  const [count, setCount] = useState(0)
-  
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <>
-      <Navbar/>
-      <Hero />
-      
-      
-      <Home />
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <Navbar />
+          <Hero />
+          <Home />
+        </>
+      )}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
