@@ -1,13 +1,15 @@
-import { useState, useEffect } from 'react';
-import './App.css';
+import { useState, useEffect } from "react";
+import "./App.css";
 
-import Navbar from './navbar';
-import Hero from './hero';
-import Home from './home';
-import Loader from './Loader';
+import Navbar from "./navbar";
+import Hero from "./hero";
+import Home from "./home";
+import Loader from "./Loader";
+import CartSidebar from "./CartSidebar";
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const [cartOpen, setCartOpen] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -23,9 +25,16 @@ function App() {
         <Loader />
       ) : (
         <>
-          <Navbar />
+          <Navbar setCartOpen={setCartOpen} />
+
           <Hero />
+
           <Home />
+
+          <CartSidebar
+            isOpen={cartOpen}
+            setIsOpen={setCartOpen}
+          />
         </>
       )}
     </>
