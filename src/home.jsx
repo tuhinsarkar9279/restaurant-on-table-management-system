@@ -3,20 +3,27 @@ import Categories from "./Categories";
 import MenuSection from "./MenuSection";
 import Bar from "./searcbar";
 
-function Home() {
-  const [activeCategory, setActiveCategory] = useState("All");
-   const [searchTerm, setSearchTerm] = useState("");
+function Home({ addToCart }) {
+  const [activeCategory, setActiveCategory] =
+    useState("All");
+
+  const [searchTerm, setSearchTerm] =
+    useState("");
 
   return (
     <>
-    <Bar setSearchTerm={setSearchTerm} />
-      
+      <Bar setSearchTerm={setSearchTerm} />
+
       <Categories
         active={activeCategory}
         setActive={setActiveCategory}
       />
 
-      <MenuSection activeCategory={activeCategory} searchTerm={searchTerm} />
+      <MenuSection
+        activeCategory={activeCategory}
+        searchTerm={searchTerm}
+        addToCart={addToCart}
+      />
     </>
   );
 }

@@ -1,25 +1,12 @@
-import { useState } from "react";
 import CIcon from "@coreui/icons-react";
-import pizza from "./assets/pizza.png";
+import { cilX, cilMinus, cilPlus } from "@coreui/icons";
 
-import {
-  cilX,
-  cilMinus,
-  cilPlus,
-} from "@coreui/icons";
-
-function CartSidebar({ isOpen, setIsOpen }) {
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: "Margherita Pizza",
-      price: 14.9,
-      quantity: 1,
-      image: pizza,
-    },
-  ]);
-
-  // Increase / Decrease Quantity
+function CartSidebar({
+  isOpen,
+  setIsOpen,
+  cartItems,
+  setCartItems,
+}) {
   const updateQuantity = (id, action) => {
     setCartItems(
       cartItems.map((item) =>
@@ -36,14 +23,12 @@ function CartSidebar({ isOpen, setIsOpen }) {
     );
   };
 
-  // Remove Item
   const removeItem = (id) => {
     setCartItems(
       cartItems.filter((item) => item.id !== id)
     );
   };
 
-  // Calculate Total
   const total = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
@@ -51,7 +36,7 @@ function CartSidebar({ isOpen, setIsOpen }) {
 
   return (
     <div
-      className={`fixed top-0 right-0 h-screen w-[420px] bg-[#111827]
+      className={`fixed top-0 right-0 h-screen w-105 bg-[#111827]
       border-l border-zinc-800 z-50 transition-transform duration-300
       ${
         isOpen
@@ -65,18 +50,18 @@ function CartSidebar({ isOpen, setIsOpen }) {
           Your Order
         </h2>
 
-       <button
-  onClick={() => setIsOpen(false)}
-  className="w-10 h-10 flex items-center justify-center rounded-full bg-zinc-800 hover:bg-red-500 transition"
->
-  <CIcon
-    icon={cilX}
-    className="text-white text-lg"
-  />
-</button>
+        <button
+          onClick={() => setIsOpen(false)}
+          className="w-10 h-10 flex items-center justify-center rounded-full bg-zinc-800 hover:bg-red-500 transition"
+        >
+          <CIcon
+            icon={cilX}
+            className="text-white"
+          />
+        </button>
       </div>
 
-      {/* Cart Items */}
+      {/* Items */}
       <div className="p-6 pb-40 overflow-y-auto h-full">
         {cartItems.length === 0 ? (
           <div className="text-center mt-20">
@@ -90,7 +75,6 @@ function CartSidebar({ isOpen, setIsOpen }) {
               key={item.id}
               className="relative flex gap-4 mb-6 bg-zinc-900 p-4 rounded-xl"
             >
-              {/* Remove Item */}
               <button
                 onClick={() =>
                   removeItem(item.id)
@@ -100,14 +84,12 @@ function CartSidebar({ isOpen, setIsOpen }) {
                 <CIcon icon={cilX} />
               </button>
 
-              {/* Image */}
               <img
                 src={item.image}
                 alt={item.name}
                 className="w-16 h-16 rounded-lg object-cover"
               />
 
-              {/* Details */}
               <div className="flex-1">
                 <h4 className="text-white font-semibold">
                   {item.name}
@@ -118,7 +100,6 @@ function CartSidebar({ isOpen, setIsOpen }) {
                 </p>
               </div>
 
-              {/* Quantity Controls */}
               <div className="flex items-center gap-2">
                 <button
                   onClick={() =>

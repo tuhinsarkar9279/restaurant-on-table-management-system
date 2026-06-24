@@ -9,7 +9,7 @@ function Navbar({ setCartOpen }) {
       <div className="logo">
         <img
           src={logo}
-          className="w-[50px]"
+          className="w-12.5"
           alt="logo"
         />
       </div>

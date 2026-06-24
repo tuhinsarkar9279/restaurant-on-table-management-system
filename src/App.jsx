@@ -10,6 +10,37 @@ import CartSidebar from "./CartSidebar";
 function App() {
   const [loading, setLoading] = useState(true);
   const [cartOpen, setCartOpen] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
+
+  // Add To Cart
+  const addToCart = (food) => {
+    const existingItem = cartItems.find(
+      (item) => item.id === food.id
+    );
+
+    if (existingItem) {
+      setCartItems(
+        cartItems.map((item) =>
+          item.id === food.id
+            ? {
+                ...item,
+                quantity: item.quantity + 1,
+              }
+            : item
+        )
+      );
+    } else {
+      setCartItems([
+        ...cartItems,
+        {
+          ...food,
+          quantity: 1,
+        },
+      ]);
+    }
+
+    setCartOpen(true);
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -25,15 +56,20 @@ function App() {
         <Loader />
       ) : (
         <>
-          <Navbar setCartOpen={setCartOpen} />
+          <Navbar
+            setCartOpen={setCartOpen}
+            cartCount={cartItems.length}
+          />
 
           <Hero />
 
-          <Home />
+          <Home addToCart={addToCart} />
 
           <CartSidebar
             isOpen={cartOpen}
             setIsOpen={setCartOpen}
+            cartItems={cartItems}
+            setCartItems={setCartItems}
           />
         </>
       )}
