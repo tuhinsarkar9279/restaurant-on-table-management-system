@@ -1,3 +1,4 @@
+import { useState } from "react";
 import CIcon from "@coreui/icons-react";
 import { cilX, cilMinus, cilPlus } from "@coreui/icons";
 
@@ -7,42 +8,93 @@ function CartSidebar({
   cartItems,
   setCartItems,
 }) {
+  const [tableNumber, setTableNumber] =
+    useState("");
+
+  // Increase / Decrease Quantity
   const updateQuantity = (id, action) => {
     setCartItems(
       cartItems.map((item) =>
         item.id === id
           ? {
-              ...item,
-              quantity:
-                action === "increase"
-                  ? item.quantity + 1
-                  : Math.max(1, item.quantity - 1),
-            }
+            ...item,
+            quantity:
+              action === "increase"
+                ? item.quantity + 1
+                : Math.max(1, item.quantity - 1),
+          }
           : item
       )
     );
   };
 
+  // Remove Item
   const removeItem = (id) => {
     setCartItems(
-      cartItems.filter((item) => item.id !== id)
+      cartItems.filter(
+        (item) => item.id !== id
+      )
     );
   };
 
+  // Total Price
   const total = cartItems.reduce(
-    (sum, item) => sum + item.price * item.quantity,
+    (sum, item) =>
+      sum + item.price * item.quantity,
     0
   );
+
+  // Place Order
+  const placeOrder = () => {
+    if (!tableNumber) {
+      alert("Please enter table number");
+      return;
+    }
+
+    const payload = {
+      tableNumber: Number(tableNumber),
+
+      totalItems: cartItems.reduce(
+        (sum, item) =>
+          sum + item.quantity,
+        0
+      ),
+
+      totalPrice: Number(
+        total.toFixed(2)
+      ),
+
+      items: cartItems.map((item) => ({
+        foodId: item.id,
+        foodName: item.name,
+        quantity: item.quantity,
+        price: item.price,
+      })),
+    };
+
+    console.log("Payload:", payload);
+
+    alert("Order Placed Successfully!");
+
+    // Future API Call
+    // axios.post(
+    //   "http://localhost:5000/orders",
+    //   payload
+    // );
+
+    setCartItems([]);
+    setTableNumber("");
+    setIsOpen(false);
+  };
 
   return (
     <div
       className={`fixed top-0 right-0 h-screen w-105 bg-[#111827]
       border-l border-zinc-800 z-50 transition-transform duration-300
-      ${
-        isOpen
+      ${isOpen
           ? "translate-x-0"
           : "translate-x-full"
-      }`}
+        }`}
     >
       {/* Header */}
       <div className="flex justify-between items-center p-6 border-b border-zinc-800">
@@ -61,8 +113,8 @@ function CartSidebar({
         </button>
       </div>
 
-      {/* Items */}
-      <div className="p-6 pb-40 overflow-y-auto h-full">
+      {/* Cart Items */}
+      <div className="p-6 pb-48 overflow-y-auto h-full">
         {cartItems.length === 0 ? (
           <div className="text-center mt-20">
             <h3 className="text-xl text-zinc-400">
@@ -75,6 +127,7 @@ function CartSidebar({
               key={item.id}
               className="relative flex gap-4 mb-6 bg-zinc-900 p-4 rounded-xl"
             >
+              {/* Remove Item */}
               <button
                 onClick={() =>
                   removeItem(item.id)
@@ -84,14 +137,16 @@ function CartSidebar({
                 <CIcon icon={cilX} />
               </button>
 
+              {/* Image */}
               <img
                 src={item.image}
                 alt={item.name}
                 className="w-16 h-16 rounded-lg object-cover"
               />
 
+              {/* Details */}
               <div className="flex-1">
-                <h4 className="text-white font-semibold">
+                <h4 className="text-white cartt font-semibold">
                   {item.name}
                 </h4>
 
@@ -100,6 +155,7 @@ function CartSidebar({
                 </p>
               </div>
 
+              {/* Quantity */}
               <div className="flex items-center gap-2">
                 <button
                   onClick={() =>
@@ -139,20 +195,36 @@ function CartSidebar({
         <div className="absolute bottom-0 w-full border-t border-zinc-800 p-6 bg-[#111827]">
           <div className="flex justify-between text-white text-xl mb-4">
             <span>Total</span>
-            <span>${total.toFixed(2)}</span>
+            <span>
+              ${total.toFixed(2)}
+            </span>
           </div>
 
           <label className="block text-zinc-400 mb-2">
             Table Number
           </label>
 
-          <input
-            type="number"
-            placeholder="Enter your table number"
+          <select
+            value={tableNumber}
+            onChange={(e) =>
+              setTableNumber(e.target.value)
+            }
             className="w-full bg-zinc-800 border border-zinc-700 rounded-lg p-3 text-white mb-4"
-          />
+          >
+            <option value="">Select Table</option>
+
+            {[...Array(10)].map((_, index) => (
+              <option
+                key={index + 1}
+                value={index + 1}
+              >
+                Table {index + 1}
+              </option>
+            ))}
+          </select>
 
           <button
+            onClick={placeOrder}
             className="w-full bg-amber-500 text-black py-3 rounded-lg font-semibold hover:bg-amber-400"
           >
             Place Order

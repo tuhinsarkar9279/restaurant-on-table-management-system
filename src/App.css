@@ -4,6 +4,9 @@ body{
     background-color: black;
 }
 
+.cartt{
+    font-size: 18px !important;
+}
 
 @media (max-width: 830px) {
 

@@ -1,14 +1,18 @@
-import { CButton, CCard, CCardBody } from "@coreui/react";
+import {
+  CButton,
+  CCard,
+  CCardBody,
+} from "@coreui/react";
 
-const FoodCard = ({
+function FoodCard({
   image,
   title,
   description,
   price,
   onAdd,
-}) => {
+}) {
   return (
-    <CCard className="bg-black border border-gray-800 overflow-hidden">
+    <CCard className="bg-black border border-gray-800">
       <img
         src={image}
         alt={title}
@@ -16,16 +20,16 @@ const FoodCard = ({
       />
 
       <CCardBody>
-        <h5 className="text-white text-xl font-semibold mb-2">
+        <h5 className="text-white text-xl font-semibold">
           {title}
         </h5>
 
-        <p className="text-gray-400 text-sm mb-4">
+        <p className="text-gray-400 text-sm mb-3">
           {description}
         </p>
 
         <div className="flex justify-between items-center">
-          <span className="text-amber-400 text-2xl font-bold">
+          <span className="text-amber-400 text-xl font-bold">
             ${price}
           </span>
 
@@ -39,6 +43,6 @@ const FoodCard = ({
       </CCardBody>
     </CCard>
   );
-};
+}
 
 export default FoodCard;
