@@ -13323,6 +13323,26 @@
         }
       ],
       "id": "sUefdx8kuw0"
+    },
+    {
+      "tableNumber": 7,
+      "totalItems": 2,
+      "totalPrice": 288,
+      "items": [
+        {
+          "foodId": "texas-monthlys-1-bbq-brisket",
+          "foodName": "Snow's BBQ",
+          "quantity": 1,
+          "price": 199
+        },
+        {
+          "foodId": "005-kings-carolina-oink-sampler",
+          "foodName": "Kings BBQ",
+          "quantity": 1,
+          "price": 89
+        }
+      ],
+      "id": "oBaEWyP_KDs"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

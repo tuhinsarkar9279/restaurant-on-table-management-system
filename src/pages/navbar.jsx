@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Btn from "./button";
 import CIcon from "@coreui/icons-react";
 import { cilCart } from "@coreui/icons";
@@ -14,14 +15,15 @@ function Navbar({ setCartOpen }) {
         />
       </div>
 
-      <button
-        onClick={() => setCartOpen(true)}
-      >
-        <Btn
-          icon={<CIcon icon={cilCart} />}
-          name="Cart"
-        />
-      </button>
+      <div className="flex items-center gap-3">
+        
+        <button onClick={() => setCartOpen(true)}>
+          <Btn
+            icon={<CIcon icon={cilCart} />}
+            name="Cart"
+          />
+        </button>
+      </div>
     </div>
   );
 }
