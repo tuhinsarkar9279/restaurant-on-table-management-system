@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 
-import Navbar from "./navbar";
-import Hero from "./hero";
-import Home from "./home";
+import Navbar from "./pages/navbar";
+import Hero from "./pages/hero";
+import Home from "./pages/home";
 import Loader from "./Loader";
-import CartSidebar from "./CartSidebar";
+import CartSidebar from "./pages/CartSidebar";
 
 function App() {
   const [loading, setLoading] = useState(true);
