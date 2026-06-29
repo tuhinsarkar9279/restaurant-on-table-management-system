@@ -11,6 +11,7 @@ import {
   CWidgetStatsC,
   CWidgetStatsE,
   CWidgetStatsF,
+
 } from '@coreui/react'
 import { getStyle } from '@coreui/utils'
 import CIcon from '@coreui/icons-react'
@@ -27,6 +28,7 @@ import {
   cilSpeedometer,
   cilUser,
   cilUserFollow,
+  
 } from '@coreui/icons'
 import { CChartBar, CChartLine } from '@coreui/react-chartjs'
 import { DocsExample } from 'src/components'

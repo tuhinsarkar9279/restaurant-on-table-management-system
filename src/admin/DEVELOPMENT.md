@@ -341,7 +341,7 @@ export default [
 ```
 
 **4. Test the page**:
-- Navigate to `http://localhost:3000/#/products`
+- Navigate to `http://localhost:3000/products`
 - Check that navigation highlights correctly
 - Verify breadcrumb displays properly
 

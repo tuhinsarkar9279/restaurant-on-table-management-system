@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import CIcon from "@coreui/icons-react";
+import {
+  cilCheckCircle,
+  cilReload,
+  cilRestaurant,
+  cilBan,
+  cilTrash,
+} from "@coreui/icons";
 import {
   CCard,
   CCardHeader,
@@ -231,62 +239,67 @@ export default function Orders() {
   </CModalBody>
 
   <CModalFooter>
-    {/* Accept */}
-    <CButton
-      color="success"
-      disabled={selectedOrder?.status !== "Pending"}
-      onClick={() =>
-        updateStatus(selectedOrder.id, "Accepted")
-      }
-    >
-      Accept
-    </CButton>
+   {/* Accept */}
+<CButton
+  color="success"
+  disabled={selectedOrder?.status !== "Pending"}
+  onClick={() =>
+    updateStatus(selectedOrder.id, "Accepted")
+  }
+>
+  <CIcon icon={cilCheckCircle} className="me-2" />
+  Accept
+</CButton>
 
-    {/* Preparing */}
-    <CButton
-      color="warning"
-      disabled={selectedOrder?.status !== "Accepted"}
-      onClick={() =>
-        updateStatus(selectedOrder.id, "Preparing")
-      }
-    >
-      Preparing
-    </CButton>
+{/* Preparing */}
+<CButton
+  color="warning"
+  disabled={selectedOrder?.status !== "Accepted"}
+  onClick={() =>
+    updateStatus(selectedOrder.id, "Preparing")
+  }
+>
+  <CIcon icon={cilReload} className="me-2" />
+  Preparing
+</CButton>
 
-    {/* Served */}
-    <CButton
-      color="info"
-      disabled={selectedOrder?.status !== "Preparing"}
-      onClick={() =>
-        updateStatus(selectedOrder.id, "Served")
-      }
-    >
-      Served
-    </CButton>
+{/* Served */}
+<CButton
+  color="info"
+  disabled={selectedOrder?.status !== "Preparing"}
+  onClick={() =>
+    updateStatus(selectedOrder.id, "Served")
+  }
+>
+  <CIcon icon={cilRestaurant} className="me-2" />
+  Served
+</CButton>
 
-    {/* Cancel */}
-    <CButton
-      color="danger"
-      disabled={
-        selectedOrder?.status === "Served" ||
-        selectedOrder?.status === "Cancelled"
-      }
-      onClick={() =>
-        updateStatus(selectedOrder.id, "Cancelled")
-      }
-    >
-      Cancel
-    </CButton>
+{/* Cancel */}
+<CButton
+  color="danger"
+  disabled={
+    selectedOrder?.status === "Served" ||
+    selectedOrder?.status === "Cancelled"
+  }
+  onClick={() =>
+    updateStatus(selectedOrder.id, "Cancelled")
+  }
+>
+  <CIcon icon={cilBan} className="me-2" />
+  Cancel
+</CButton>
 
-    {/* Delete */}
-    <CButton
-      color="dark"
-      onClick={() =>
-        deleteOrder(selectedOrder.id)
-      }
-    >
-      Delete
-    </CButton>
+{/* Delete */}
+<CButton
+  color="dark"
+  onClick={() =>
+    deleteOrder(selectedOrder.id)
+  }
+>
+  <CIcon icon={cilTrash} className="me-2" />
+  Delete
+</CButton>
   </CModalFooter>
 </CModal>
     </>

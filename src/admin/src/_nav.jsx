@@ -9,7 +9,7 @@
  *
  * @module _nav
  */
-
+import { cilCart } from "@coreui/icons";
 import React from 'react'
 import CIcon from '@coreui/icons-react'
 import {
@@ -25,6 +25,7 @@ import {
   cilPuzzle,
   cilSpeedometer,
   cilStar,
+    cilFastfood,
 } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 
@@ -91,7 +92,14 @@ const _nav = [
     component: CNavItem,
     name: 'Orders',
     to: '/theme/typography',
-    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilCart} customClassName="nav-icon" />,
+  },
+
+   {
+    component: CNavItem,
+    name: 'Add Item',
+    to: '/theme/',
+    icon: <CIcon icon={cilFastfood} customClassName="nav-icon" />,
   },
   
  
