@@ -46,50 +46,62 @@ function CartSidebar({
   );
 
   // Place Order
-  const placeOrder = async () => {
-    if (!tableNumber) {
-      alert("Please select table number");
-      return;
-    }
+ const placeOrder = async () => {
+  if (!tableNumber) {
+    alert("Please select table number");
+    return;
+  }
 
-    const payload = {
-      tableNumber: Number(tableNumber),
+  // Current Date & Time
+  const now = new Date();
 
-      totalItems: cartItems.reduce(
-        (sum, item) => sum + item.quantity,
-        0
-      ),
+  const payload = {
+    tableNumber: Number(tableNumber),
 
-      totalPrice: Number(total.toFixed(2)),
+    // Save Order Date
+    orderDate: now.toLocaleDateString("en-GB"),
 
-      items: cartItems.map((item) => ({
-        foodId: item.id,
-        foodName: item.name,
-        quantity: item.quantity,
-        price: item.price,
-      })),
-    };
+    // Save Order Time
+    orderTime: now.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    }),
 
-    console.log("Payload:", payload);
+    // Default Status
+    status: "Pending",
 
-    try {
-      const response = await axios.post(
-        "http://localhost:3000/orders",
-        payload
-      );
+    totalItems: cartItems.reduce(
+      (sum, item) => sum + item.quantity,
+      0
+    ),
 
-      console.log("Response:", response.data);
+    totalPrice: Number(total.toFixed(2)),
 
-      alert("Order Placed Successfully!");
-
-      setCartItems([]);
-      setTableNumber("");
-      setIsOpen(false);
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Failed to place order!");
-    }
+    items: cartItems.map((item) => ({
+      foodId: item.id,
+      foodName: item.name,
+      quantity: item.quantity,
+      price: item.price,
+    })),
   };
+
+  console.log(payload);
+
+  try {
+    await axios.post(
+      "http://localhost:3000/orders",
+      payload
+    );
+
+    alert("Order Placed Successfully!");
+
+    setCartItems([]);
+    setTableNumber("");
+    setIsOpen(false);
+  } catch (err) {
+    console.log(err);
+  }
+};
 
   return (
     <div
