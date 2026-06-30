@@ -123,7 +123,7 @@ const Dashboard = () => {
 
         <CCol md={6}>
           <CCard className="mb-4">
-            <CCardHeader>Today's Revenue</CCardHeader>
+            <CCardHeader>Revenue</CCardHeader>
 
             <CCardBody>
               <h2>₹{totalRevenue}</h2>

@@ -13325,5 +13325,12 @@
       "id": "N_MraSTOCmQ"
     }
   ],
+  "categories": [
+    {
+      "name": "tyuio",
+      "status": "Active",
+      "id": "3a4zz4P8OXM"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }
